@@ -1,0 +1,73 @@
+[System]
+Name='KejadianHujan'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=3
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Suhu_Udara'
+Range=[20 40]
+NumMFs=3
+MF1='Panas':'trapmf',[20 20 25 27]
+MF2='Sedang':'trapmf',[25 27 28 30]
+MF3='Sejuk':'trapmf',[28 30 40 40]
+
+[Input2]
+Name='Kelembaban'
+Range=[55 95]
+NumMFs=3
+MF1='Kering':'trapmf',[55 55 65 70]
+MF2='Lembab':'trapmf',[65 70 87 92]
+MF3='Basah':'trapmf',[87 92 95 95]
+
+[Input3]
+Name='Kecepatan_Angin'
+Range=[0 100]
+NumMFs=3
+MF1='Pelan':'trapmf',[0 0 6 19]
+MF2='Sedang':'trapmf',[6 19 29 50]
+MF3='Kencang':'trapmf',[29 50 119 119]
+
+[Input4]
+Name='Tekanan_Udara'
+Range=[1004 1013]
+NumMFs=3
+MF1='Rendah':'trapmf',[1001 1003 1005 1007]
+MF2='Sedang':'trapmf',[1005 1006 1010 1011]
+MF3='Tinggi':'trapmf',[1010 1011 1013 1013]
+
+[Output1]
+Name='Cerah'
+Range=[0 200]
+NumMFs=2
+MF1='Sangat':'trapmf',[0 0 2.857 7.143]
+MF2='Sedikit':'trapmf',[4.286 7.143 21.43 28.57]
+
+[Output2]
+Name='Hujan'
+Range=[0 200]
+NumMFs=3
+MF1='Ringan':'trapmf',[21.43 28.57 64.29 71.43]
+MF2='Sedang':'trapmf',[64.29 71.43 135.7 142.9]
+MF3='Lebat':'trapmf',[135.7 142.9 200 200]
+
+[Output3]
+Name='Badai'
+Range=[0 200]
+NumMFs=1
+MF1='Besar':'trapmf',[170 180 190 210]
+
+[Rules]
+1 1 1 1, 1 0 0 (1) : 1
+1 2 2 1, 2 0 0 (1) : 1
+2 2 2 2, 0 1 0 (1) : 1
+2 2 3 2, 0 2 0 (1) : 1
+2 3 3 3, 0 3 0 (1) : 1
+3 3 3 3, 0 0 1 (1) : 1
